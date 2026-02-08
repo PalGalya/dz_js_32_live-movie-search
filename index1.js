@@ -34,7 +34,6 @@ const addMovieToList = ({ Poster: poster, Title: title, Year: year }) => {
 const getData = (url) =>
   fetch(url)
     .then((res) => res.json())
-
     .then((data) => {
       if (!data || !data.Search) throw new Error('The server returned incorect data')
       return data.Search
@@ -45,7 +44,8 @@ const clearMoviesMarkup = () => {
   if (moviesListElement) moviesListElement.innerHTML = ''
 }
 
-const inputSearchHandler = (e) => {  debounceTime(() => {
+const inputSearchHandler = (e) => {
+  debounceTime(() => {
     const searchValue = e.target.value.trim()
     if (!searchValue || searchValue.length < 4 || searchValue === lastSearchValue) return
     if (!isSearchTriggerEnabled) clearMoviesMarkup()
